@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Add this style section in the head -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandTax Portal - Dashboard</title>
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Add animation styles -->
+    <style>
+        /* Update animation styles to start with opacity 0 and not animate by default */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .fade-in.animate {
+            opacity: 1;
+        }
+        
+        .slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Add slide-right animation */
+        .slide-right {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-right.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Add slide-left animation */
+        .slide-left {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Add zoom-in animation */
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease-out;
+        }
+        
+        .zoom-in.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .property-card {
+            transition: all 0.3s ease;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .property-image {
+            transition: all 0.5s ease;
+        }
+        
+        .property-card:hover .property-image {
+            transform: scale(1.05);
+        }
+    </style>
+    <!-- Add this to your existing head section -->
+    
+    <style>
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+
+<body class="">
+    <!-- body image -->
+    <main class="h-screen">
+        <div class="absolute h-[100vh] w-full opacity-40 z-1 left-0 bg-black"></div>
+        <div id="hero-section"
+            class="bg-[url('https://websitedemos.net/real-estate-company-04/wp-content/uploads/sites/1484/2023/07/hero-bg.jpg')] bg-cover bg-center h-full">
+            <header class="flex justify-around">
+                <div class="flex gap-3 items-center pt-5 relative z-2 fade-in">
+                    <div class="logo-container flex items-center">
+                        <div class="logo-icon bg-white rounded-lg p-2 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                <path d="M12 2v3"></path>
+                                <path d="M4 14h2"></path>
+                                <path d="M18 14h2"></path>
+                            </svg>
+                        </div>
+                        <div class="logo-text ml-2 text-white font-bold">LandTax Portal</div>
+                    </div>
+                </div>
+                <div class="flex gap-6 justify-center pt-7 relative z-2 fade-in">
+                    <a href="" class="text-white z-2">Home</a>
+                    <a href="about.html" class="text-white z-2">About</a>
+                    <a href="#services-section" class="text-white z-2">Services</a>
+                    <a href="tax_calculator.php" class="text-white z-2">Tax Pay</a>
+                    <a href="#footer-section" class="text-white z-2">Contact</a>
+                    <!-- Removed Add Property button from here -->
+                </div>
+                <!-- logo -->
+                <div class="flex gap-6 items-center pt-5 relative z-2 fade-in">
+                    <i class="fa-brands fa-twitter" style="color: #ffffff;"></i>
+                    <i class="fa-brands fa-pinterest" style="color: #ffffff;"></i>
+                    <i class="fa-brands fa-youtube" style="color: #ffffff;"></i>
+                    <i class="fa-solid fa-magnifying-glass" style="color: #4e5155;"></i>
+                </div>
+            </header>
+            <section class="relative z-2">
+                <p class="text-white justify-center items-center flex pt-20 text-2xl font-semibold slide-up">Simplifying Land Records & Property Tax Management</p>
+                <p class="text-white justify-center items-center flex text-7xl pt-20 text-center zoom-in">Access Your Property <br> Records Anywhere</p>
+            </section>
+            <div class="flex justify-center pt-15 gap-4">
+                <a href="search_property.php" class="bg-blue-500 relative z-2 h-[50px] w-[190px] rounded-4xl slide-up flex items-center justify-center">
+                    <p class="text-center text-white font-semibold tracking-wider">SEARCH RECORDS</p>
+                </a>
+                <!-- Enhanced Add Property button -->
+                <a href="add_property.php" class="bg-green-500 relative z-2 h-[50px] w-[190px] rounded-4xl slide-up flex items-center justify-center group hover:bg-green-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                    <p class="text-center text-white font-semibold tracking-wider group-hover:tracking-widest transition-all duration-300">
+                        <i class="fas fa-plus-circle mr-2"></i>ADD PROPERTY
+                    </p>
+                </a>
+            </div>
+        </div>
+        
+        <!-- second section -->
+        <div id="services-section" class="h-full w-[100%] bg-amber-50">
+            <p class="text-center pt-35 text-5xl fade-in">Our Services</p>
+            <p class="text-center pt-10 tracking-wide fade-in">Streamlining property record management and tax payments.<span>Our digital platform <br> provides comprehensive land record solutions tailored to your needs</span></p>
+            <!-- box -->
+            <div class="flex">
+                <!-- box1 -->
+                <div class="h-[300px] w-[300px] mt-25 ml-15 slide-up" data-delay="100">
+                    <p class="text-blue-400 pl-5 pt-5">01</p>
+                    <p class="text-2xl pl-5 pt-3 font-medium">Land Records</p>
+                    <p class="pl-5 pt-3">Access and verify property ownership records, land surveys, and boundary information through our secure digital platform.</p>
+                </div>
+                <div class="h-[300px] w-[300px] mt-25 ml-15 slide-up" data-delay="200">
+                    <p class="text-blue-400 pl-5 pt-5">02</p>
+                    <p class="text-2xl pl-5 pt-3 font-medium">Tax Assessment</p>
+                    <p class="pl-5 pt-3">View property tax assessments, understand valuation methods, and access historical tax information for your properties.</p>
+                </div>
+                <div class="h-[300px] w-[300px] mt-25 ml-15 slide-up" data-delay="300">
+                    <p class="text-blue-400 pl-5 pt-5">03</p>
+                    <p class="text-2xl pl-5 pt-3 font-medium">Online Payments</p>
+                    <p class="pl-5 pt-3">Pay property taxes online with our secure payment gateway, set up reminders, and access payment history and receipts.</p>
+                </div>
+                <!-- box4 -->
+                <div class="h-[300px] w-[300px] mt-25 ml-15 slide-up" data-delay="400">
+                    <p class="text-blue-400 pl-5 pt-5">04</p>
+                    <p class="text-2xl pl-5 pt-3 font-medium">Document Filing</p>
+                    <p class="pl-5 pt-3">Submit property-related documents, apply for permits, and track application status through our streamlined digital system.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 3rd section with animations -->
+        <div id="featured-section" class="h-[130%] w-full bg-pink-50">
+            <p class="text-center text-6xl pt-25 fade-in">Featured Properties</p>
+            <div class="w-20 h-1 bg-blue-500 mx-auto mt-4 fade-in"></div>
+            <p class="text-center pt-10 font-sans fade-in">Explore recently updated property records in your area.<br> Our system provides comprehensive information to help with your property management needs.</p>
+            <div class="flex justify-center gap-8 px-10">
+                <!-- card1 with animations -->
+                <div class="property-card h-[500px] w-[400px] mt-30 bg-white rounded-2xl overflow-hidden shadow-sm slide-up" data-delay="100">
+                    <div class="overflow-hidden">
+                        <img src="https://websitedemos.net/real-estate-company-04/wp-content/uploads/sites/1484/2023/07/feature-01.jpg"
+                            alt="" class="property-image h-[300px] w-full object-cover">
+                    </div>
+                    <p class="pt-5 font-light px-6 text-gray-500 text-sm">COMMERCIAL - DOWNTOWN</p>
+                    <p class="pt-2 font-medium px-6 text-xl">Downtown Office Complex</p>
+                    <p class="pt-3 font-light px-6 text-gray-600">Recently updated tax assessment with complete property history and zoning information available.</p>
+                    <p class="text-blue-500 px-6 pt-3 font-bold">Tax ID: 45892</p>
+                </div>
+                
+                <!-- card2 with animations -->
+                <div class="property-card h-[500px] w-[400px] mt-30 bg-white rounded-2xl overflow-hidden shadow-sm slide-up" data-delay="300">
+                    <div class="overflow-hidden">
+                        <img src="https://websitedemos.net/real-estate-company-04/wp-content/uploads/sites/1484/2023/07/feature-02.jpg"
+                            alt="" class="property-image h-[300px] w-full object-cover">
+                    </div>
+                    <p class="pt-5 font-light px-6 text-gray-500 text-sm">RESIDENTIAL - WESTSIDE</p>
+                    <p class="pt-2 font-medium px-6 text-xl">Westside Residential Area</p>
+                    <p class="pt-3 font-light px-6 text-gray-600">Complete subdivision records with updated property boundaries and ownership information.</p>
+                    <p class="text-blue-500 px-6 pt-3 font-bold">Tax ID: 32781</p>
+                </div>
+                
+                <!-- card3 with animations -->
+                <div class="property-card h-[500px] w-[400px] mt-30 bg-white rounded-2xl overflow-hidden shadow-sm slide-up" data-delay="500">
+                    <div class="overflow-hidden">
+                        <img src="https://websitedemos.net/real-estate-company-04/wp-content/uploads/sites/1484/2023/07/feature-03.jpg"
+                            alt="" class="property-image h-[300px] w-full object-cover">
+                    </div>
+                    <p class="pt-5 font-light px-6 text-gray-500 text-sm">AGRICULTURAL - RURAL</p>
+                    <p class="pt-2 font-medium px-6 text-xl">Rural Farmland Records</p>
+                    <p class="pt-3 font-light px-6 text-gray-600">Agricultural land records with water rights information, soil surveys, and tax exemption status.</p>
+                    <p class="text-blue-500 px-6 pt-3 font-bold">Tax ID: 78453</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4th section -->
+        <div id="about-section" class="h-full w-[100%] bg-yellow-50 flex">
+            <div class="slide-right" data-delay="200">
+                <img src="https://websitedemos.net/real-estate-company-04/wp-content/uploads/sites/1484/2023/07/connecting-with-customers.jpg" alt="" width="700px" class="rounded-2xl pl-25 pb-9 pt-20 h-full">
+            </div>
+            <div class="slide-left" data-delay="400">
+                <p class="text-5xl pt-40 pl-10 font-medium">Connecting citizens with <br>accurate property records <br> is our mission.</p>
+                <p class="pl-10 pt-20">Our land records and property tax management system provides transparent, <br>accessible information for property owners, government agencies, and businesses. <br>With secure digital access to vital property information, we're streamlining <br>processes and improving public service delivery.</p>
+                <button class="bg-blue-500 hover:bg-blue-600 transition-colors rounded-3xl h-[40px] w-[130px] mt-6 ml-10 text-white">LEARN MORE</button>
+            </div>
+        </div>
+        
+        <!-- footer -->
+        <div id="footer-section" class="h-[50%] w-full flex justify-evenly">
+            <div class="mt-8 fade-in" data-delay="100">
+                <p class="text-2xl pb-3">Resources</p>
+                <p>Tax Payment Guide</p>
+                <p>Property Search Tips</p>
+                <p>Document Requirements</p>
+                <p>FAQ & Support</p>
+                <p>Tax Calendar</p>
+            </div>
+            <div class="mt-8 fade-in" data-delay="200">
+                <p class="text-2xl pb-3">About Us</p>
+                <p>Our digital land records system <br> provides secure, accessible <br>property information and tax <br>management for all citizens.</p>
+            </div>
+            <div class="mt-8 fade-in" data-delay="300">
+                <p class="text-2xl pb-3">Services</p>
+                <p>Property Search</p>
+                <p>Tax Payments</p>
+                <p>Document Filing</p>
+                <p>Record Requests</p>
+                <p>Boundary Surveys</p>
+                <p>Tax Appeals</p>
+                <p>Mobile Access</p>
+            </div>
+            <div class="mt-8 fade-in" data-delay="400">
+                <p class="text-2xl pb-3">Contact Info</p>
+                <p class="text-blue-500">13,fifthe Avenue,New york Ny-1093 <br> landtaxportal@gov.com <br>984-643-877 </p>
+            </div>
+        </div>
+        <p class="font-light text-center fade-in">Copyright &copy; 2025 Land Records & Property Tax Management</p>
+    </main>
+</body>
+
+</html>
+
+<!-- Add this script before the closing body tag -->
+<script>
+    // Function to check if an element is in the viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75
+        );
+    }
+    
+    // Function to handle scroll and trigger animations for a section
+    function animateSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (!section) return;
+        
+        if (isInViewport(section) && !section.classList.contains('animated')) {
+            // Add animated class to prevent re-animation
+            section.classList.add('animated');
+            
+            // Animate fade-in elements
+            const fadeElements = section.querySelectorAll('.fade-in');
+            fadeElements.forEach((el, index) => {
+                const delay = el.getAttribute('data-delay') || index * 200;
+                setTimeout(() => {
+                    el.classList.add('animate');
+                }, parseInt(delay));
+            });
+            
+            // Animate slide-up elements
+            const slideUpElements = section.querySelectorAll('.slide-up');
+            slideUpElements.forEach(el => {
+                const delay = el.getAttribute('data-delay') || 0;
+                setTimeout(() => {
+                    el.classList.add('animate');
+                }, parseInt(delay));
+            });
+            
+            // Animate slide-right elements
+            const slideRightElements = section.querySelectorAll('.slide-right');
+            slideRightElements.forEach(el => {
+                const delay = el.getAttribute('data-delay') || 0;
+                setTimeout(() => {
+                    el.classList.add('animate');
+                }, parseInt(delay));
+            });
+            
+            // Animate slide-left elements
+            const slideLeftElements = section.querySelectorAll('.slide-left');
+            slideLeftElements.forEach(el => {
+                const delay = el.getAttribute('data-delay') || 0;
+                setTimeout(() => {
+                    el.classList.add('animate');
+                }, parseInt(delay));
+            });
+            
+            // Animate zoom-in elements
+            const zoomInElements = section.querySelectorAll('.zoom-in');
+            zoomInElements.forEach(el => {
+                const delay = el.getAttribute('data-delay') || 0;
+                setTimeout(() => {
+                    el.classList.add('animate');
+                }, parseInt(delay));
+            });
+        }
+    }
+    
+    // Function to handle scroll and check all sections
+    function handleScroll() {
+        animateSection('hero-section');
+        animateSection('services-section');
+        animateSection('featured-section');
+        animateSection('about-section');
+        animateSection('footer-section');
+    }
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Animate hero section immediately on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            const heroSection = document.getElementById('hero-section');
+            if (heroSection) {
+                heroSection.classList.add('animated');
+                const animatedElements = heroSection.querySelectorAll('.fade-in, .slide-up, .slide-right, .slide-left, .zoom-in');
+                animatedElements.forEach(el => {
+                    el.classList.add('animate');
+                });
+            }
+            handleScroll();
+        }, 300);
+    });
+</script>
+
+<!-- Add this style section -->
+<style>
+    .search-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .search-modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        width: 90%;
+        max-width: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        outline: none;
+    }
+
+    .search-button {
+        width: 100%;
+        padding: 0.75rem;
+        background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .search-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+    }
+</style>
+
+<!-- Add this modal HTML before closing body tag -->
+<div id="searchModal" class="search-modal">
+    <div class="search-modal-content">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">Search Property Records</h2>
+        <form action="search_property.php" method="GET">
+            <input type="tel" name="mobile_no" class="search-input" placeholder="Enter Mobile Number" pattern="[0-9]{10}" required>
+            <button type="submit" class="search-button">Search Records</button>
+        </form>
+    </div>
+</div>
+
+<!-- Add this script before closing body tag -->
+<script>
+    const searchButton = document.querySelector('button:contains("SEARCH RECORDS")');
+    const searchModal = document.getElementById('searchModal');
+
+    searchButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        searchModal.style.display = 'block';
+    });
+
+    searchModal.addEventListener('click', (e) => {
+        if (e.target === searchModal) {
+            searchModal.style.display = 'none';
+        }
+    });
+</script>
